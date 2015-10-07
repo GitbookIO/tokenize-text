@@ -41,5 +41,23 @@ describe('tokenize.splitAndMerge(fn)', function() {
         tokens[1].index.should.equal(8);
         tokens[1].offset.should.equal(5);
     });
+
+    it('should handle splitting in the middle of tokens', function() {
+        var tokens = tokenize.flow(
+            tokenize.words(),
+            tokenize.splitAndMerge(function(tok) {
+                return [
+                    tok.slice(0, tok.length/2),
+                    null,
+                    tok.slice(tok.length/2)
+                ]
+            })
+        )('tata dada');
+
+        tokens.should.have.lengthOf(3);
+        tokens[0].value.should.equal('ta');
+        tokens[1].value.should.equal('tada');
+        tokens[2].value.should.equal('da');
+    });
 });
 
