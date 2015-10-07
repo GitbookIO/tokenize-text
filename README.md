@@ -14,12 +14,32 @@ $ npm install tokenize-text
 var tokenize = require('tokenize-text');
 ```
 
-##### tokenize(fn)
+#### tokenize(fn)
+
+This is the main method of this module, all other methods are using it:
+
+```js
 
 
-##### tokenize.re(re)
+```
 
-##### tokenize.characters()
+#### tokenize.re(re)
+
+Tokenize using a regular expression:
+
+```js
+var extractUppercase = tokenize.re(/[A-Z]/);
+var tokens = extractUppercase('aBcD');
+
+/*
+[
+    { value: 'B', index: 1, offset: 1 },
+    { value: 'D', index: 3, offset: 1 }
+]
+*/
+```
+
+#### tokenize.characters()
 
 Tokenize and split as characters, `tokenize.characters()` is equivalent to `tokenize.re(/[^\s]/)`.
 
@@ -35,7 +55,7 @@ var tokens = tokenize.characters()('abc');
 */
 ```
 
-##### tokenize.sections()
+#### tokenize.sections()
 
 Split in sections, sections are split by `\n . , ; ! ?`.
 
@@ -58,21 +78,25 @@ var tokens = tokenize.sections()('this is sentence 1. this is sentence 2');
 */
 ```
 
-##### tokenize.words()
+#### tokenize.words()
 
 
 
 
-##### tokenize.filter(fn)
+#### tokenize.filter(fn)
 
 Filter the list of tokens by calling `fn(token)`:
 
 ```js
+// Filter the words to extract the ones that start with an uppercase
 var extractNames = tokenize.filter(function(word, current, prev) {
     return (prev && /[A-Z]/.test(word[0]));
 });
 
+// Split texts in words
 var words = tokenize.words()('My name is Samy.');
+
+// Apply the filter
 var tokens = extractNames(words);
 
 /*
@@ -82,13 +106,16 @@ var tokens = extractNames(words);
 */
 ```
 
-##### tokenize.flow(fn1, fn2, [...])
+#### tokenize.flow(fn1, fn2, [...])
 
 Creates a tokenizer that returns the result of invoking the provided tokenizers in serie.
 
 ```js
 var extractNames = tokenize.flow(
+    // Split text as words
     tokenize.words(),
+
+    // Filter the words to extract the ones that start with an uppercase
     tokenize.filter(function(word, current, prev) {
         return (prev && /[A-Z]/.test(word[0]));
     })
@@ -99,7 +126,7 @@ var tokens = extractNames('My name is Samy.');
 
 ### Examples
 
-##### Extract repeated words in sentences
+#### Extract repeated words in sentences
 
 Example to extract all repeated words in sentences:
 
