@@ -1,5 +1,8 @@
 # tokenize-text
 
+[![Build Status](https://travis-ci.org/GitbookIO/tokenize-text.png?branch=master)](https://travis-ci.org/GitbookIO/tokenize-text)
+[![NPM version](https://badge.fury.io/js/tokenize-text.svg)](http://badge.fury.io/js/tokenize-text)
+
 Javascript text tokenizer that is easy to use and compose.
 
 ### Installation
@@ -16,11 +19,42 @@ var tokenize = require('tokenize-text');
 
 #### tokenize(fn)
 
-This is the main method of this module, all other methods are using it:
+This is the main method of this module, all other methods are using it.
+
+`fn` will be called with 4 arguments:
+
+- `text`: text value of the token (`text == currentToken.value`)
+- `currentToken`: current token object
+- `prevToken`: precedent token (or null)
+- `nextToken`: next token (or null)
+
+`fn` should return a string, an array of string, a token or an array of tokens.
+
+`tokenize(fn)` returns a tokenizer function that accept a list of tokens or a string argument (it will be convert as one token).
+
+The tokenizer function returns an array of tokens with the following properties:
+
+- `value`: text content of the token
+- `index`: absolute position in the original text
+- `offset`: length of the token (equivalent to `value.length`)
 
 ```js
+// Simple tokenizer that split into 2 sections
+var splitIn2 = tokenize(function(text, currentToken, prevToken, nextToken) {
+    return [
+        text.slice(0, text.length / 2),
+        text.slice(text.length / 2)
+    ]
+});
 
+var tokens = splitIn2('hello');
 
+/*
+[
+    { value: 'he', index: 0, offset: 2 },
+    { value: 'llo', index: 2, offset: 3 }
+]
+*/
 ```
 
 #### tokenize.re(re)

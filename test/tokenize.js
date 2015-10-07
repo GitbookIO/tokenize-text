@@ -3,6 +3,24 @@ var should = require('should');
 var tokenize = require("../lib");
 
 describe('Tokenizer', function() {
+    it('tokenize()', function() {
+        var splitIn2 = tokenize(function(text, currentToken, prevToken, nextToken) {
+            return [
+                text.slice(0, text.length / 2),
+                text.slice(text.length / 2)
+            ]
+        });
+
+        var tokens = splitIn2('hello');
+
+        tokens.should.have.lengthOf(2);
+        tokens[0].value.should.equal('he');
+        tokens[0].index.should.equal(0);
+        tokens[0].offset.should.equal(2);
+        tokens[1].value.should.equal('llo');
+        tokens[1].index.should.equal(2);
+        tokens[1].offset.should.equal(3);
+    });
 
     it('tokenize.characters()', function() {
         var tokens = tokenize.characters()('abc');
