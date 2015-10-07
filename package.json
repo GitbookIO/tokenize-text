@@ -2,12 +2,10 @@
     "name": "tokenize-text",
     "version": "0.0.0",
     "homepage": "https://github.com/GitbookIO/tokenize-text",
-    "description": "Functional tokenizer for Node.JS and the browser",
+    "description": "Javascript text tokenizer that is easy to use and compose",
     "main": "lib/index.js",
     "dependencies": {
-        "lodash": "^3.2.0",
-        "simple-lru-cache": "0.0.1",
-        "crc": "3.2.1"
+        "lodash": "^3.2.0"
     },
     "devDependencies": {
         "mocha": "2.3.3",

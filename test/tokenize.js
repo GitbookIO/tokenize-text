@@ -1,10 +1,8 @@
-var should = require('should');
-
-var tokenize = require("../lib");
+var tokenize = require("./instance");
 
 describe('Tokenizer', function() {
-    it('tokenize()', function() {
-        var splitIn2 = tokenize(function(text, currentToken, prevToken, nextToken) {
+    it('tokenize.split()', function() {
+        var splitIn2 = tokenize.split(function(text, currentToken, prevToken, nextToken) {
             return [
                 text.slice(0, text.length / 2),
                 text.slice(text.length / 2)

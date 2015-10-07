@@ -1,6 +1,4 @@
-var should = require('should');
-
-var tokenize = require("../lib");
+var tokenize = require("./instance");
 
 describe('tokenize.re()', function() {
 

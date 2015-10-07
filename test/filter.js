@@ -1,5 +1,4 @@
-var should = require('should');
-var tokenize = require("../lib");
+var tokenize = require("./instance");
 
 describe('tokenize.filter()', function() {
     it('should correctly pass prev token', function() {

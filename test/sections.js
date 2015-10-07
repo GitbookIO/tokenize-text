@@ -1,6 +1,4 @@
-var should = require('should');
-
-var tokenize = require("../lib");
+var tokenize = require("./instance");
 
 describe('tokenize.sections()', function() {
     it('should split by .', function() {

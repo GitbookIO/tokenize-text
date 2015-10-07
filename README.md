@@ -14,10 +14,11 @@ $ npm install tokenize-text
 ### Usage
 
 ```js
-var tokenize = require('tokenize-text');
+var Tokenizer = require('tokenize-text');
+var tokenize = new Tokenizer();
 ```
 
-#### tokenize(fn)
+#### tokenize.split(fn)
 
 This is the main method of this module, all other methods are using it.
 
@@ -30,7 +31,7 @@ This is the main method of this module, all other methods are using it.
 
 `fn` should return a string, an array of string, a token or an array of tokens.
 
-`tokenize(fn)` returns a tokenizer function that accept a list of tokens or a string argument (it will be convert as one token).
+`tokenize.split(fn)` returns a tokenizer function that accept a list of tokens or a string argument (it will be convert as one token).
 
 The tokenizer function returns an array of tokens with the following properties:
 
@@ -40,7 +41,7 @@ The tokenizer function returns an array of tokens with the following properties:
 
 ```js
 // Simple tokenizer that split into 2 sections
-var splitIn2 = tokenize(function(text, currentToken, prevToken, nextToken) {
+var splitIn2 = tokenize.split(function(text, currentToken, prevToken, nextToken) {
     return [
         text.slice(0, text.length / 2),
         text.slice(text.length / 2)
