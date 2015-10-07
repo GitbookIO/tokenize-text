@@ -1,7 +1,7 @@
 {
     "name": "tokenize-text",
     "version": "0.0.0",
-    "homepage": "https://github.com/RousseauAPI/tokenize-text",
+    "homepage": "https://github.com/GitbookIO/tokenize-text",
     "description": "Functional tokenizer for Node.JS and the browser",
     "main": "lib/index.js",
     "dependencies": {
@@ -18,11 +18,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/RousseauAPI/tokenize-text.git"
+        "url": "https://github.com/GitbookIO/tokenize-text.git"
     },
     "author": "GitBook <contact@gitbook.com>",
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/RousseauAPI/tokenize-text/issues"
+        "url": "https://github.com/GitbookIO/tokenize-text/issues"
     }
 }
