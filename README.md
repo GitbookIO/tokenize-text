@@ -14,7 +14,14 @@ $ npm install tokenize-text
 var tokenize = require('tokenize-text');
 ```
 
-##### Tokenize as characters
+##### tokenize(fn)
+
+
+##### tokenize.re(re)
+
+##### tokenize.characters()
+
+Tokenize and split as characters, `tokenize.characters()` is equivalent to `tokenize.re(/[^\s]/)`.
 
 ```js
 var tokens = tokenize.characters()('abc');
@@ -28,9 +35,71 @@ var tokens = tokenize.characters()('abc');
 */
 ```
 
-##### Compose tokenizers
+##### tokenize.sections()
 
-`tokenize.flow(fn1, fn2, ...)` is being used to compose multiple tokenizers.
+Split in sections, sections are split by `\n . , ; ! ?`.
+
+```js
+var tokens = tokenize.sections()('this is sentence 1. this is sentence 2');
+
+/*
+[
+    {
+        value: 'this is sentence 1',
+        index: 0,
+        offset: 18
+    },
+    {
+        value: ' this is sentence 2',
+        index: 19,
+        offset: 19
+    }
+]
+*/
+```
+
+##### tokenize.words()
+
+
+
+
+##### tokenize.filter(fn)
+
+Filter the list of tokens by calling `fn(token)`:
+
+```js
+var extractNames = tokenize.filter(function(word, current, prev) {
+    return (prev && /[A-Z]/.test(word[0]));
+});
+
+var words = tokenize.words()('My name is Samy.');
+var tokens = extractNames(words);
+
+/*
+[
+    { value: 'Samy', index: 11, offset: 4 }
+]
+*/
+```
+
+##### tokenize.flow(fn1, fn2, [...])
+
+Creates a tokenizer that returns the result of invoking the provided tokenizers in serie.
+
+```js
+var extractNames = tokenize.flow(
+    tokenize.words(),
+    tokenize.filter(function(word, current, prev) {
+        return (prev && /[A-Z]/.test(word[0]));
+    })
+);
+
+var tokens = extractNames('My name is Samy.');
+```
+
+### Examples
+
+##### Extract repeated words in sentences
 
 Example to extract all repeated words in sentences:
 
@@ -44,7 +113,7 @@ var repeatedWords = tokenize.flow(
         // Tokenize as words
         tokenize.words(),
 
-        // For each sentences
+        // Filter words to extract only repeated ones
         tokenize.filter(function(word, token, prev) {
             return (
                 prev &&

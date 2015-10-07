@@ -2,7 +2,7 @@ var should = require('should');
 
 var tokenize = require("../lib");
 
-describe('Flow and Composition', function() {
+describe('tokenize.flow()', function() {
 
     it('ex: repeated words', function() {
         var repeatedWords = tokenize.flow(
