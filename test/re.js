@@ -12,5 +12,23 @@ describe('tokenize.re()', function() {
         tokens[1].value.should.equal('D');
         tokens[1].index.should.equal(3);
     });
+
+    it('should accept option to split instead of extracting', function() {
+        var extractUppercase = tokenize.re(/\ /i, { split: true });
+        var tokens = extractUppercase('hello world');
+
+        tokens.should.have.lengthOf(3);
+        tokens[0].value.should.equal('hello');
+        tokens[0].index.should.equal(0);
+        tokens[0].offset.should.equal(5);
+
+        tokens[1].value.should.equal(' ');
+        tokens[1].index.should.equal(5);
+        tokens[1].offset.should.equal(1);
+
+        tokens[2].value.should.equal('world');
+        tokens[2].index.should.equal(6);
+        tokens[2].offset.should.equal(5);
+    });
 });
 
