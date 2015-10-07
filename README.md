@@ -155,7 +155,7 @@ var tokens = extractNames(words);
 
 #### tokenize.flow(fn1, fn2, [...])
 
-Creates a tokenizer that returns the result of invoking the provided tokenizers in serie.
+Creates a tokenizer that returns the result of invoking the provided tokenizers for each input token.
 
 ```js
 var extractNames = tokenize.flow(
@@ -170,6 +170,8 @@ var extractNames = tokenize.flow(
 
 var tokens = extractNames('My name is Samy.');
 ```
+
+To execute all tokenizer in series, you can use `tokenize.serie(fn1, fn2, [...])` instead.
 
 ### Examples
 
