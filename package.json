@@ -1,0 +1,28 @@
+{
+    "name": "tokenize-text",
+    "version": "0.0.0",
+    "homepage": "https://github.com/RousseauAPI/tokenize-text",
+    "description": "Functional tokenizer for Node.JS and the browser",
+    "main": "lib/index.js",
+    "dependencies": {
+        "lodash": "^3.2.0",
+        "simple-lru-cache": "0.0.1",
+        "crc": "3.2.1"
+    },
+    "devDependencies": {
+        "mocha": "2.3.3",
+        "should": "7.1.0"
+    },
+    "scripts": {
+        "test": "mocha --reporter spec --recursive --bail"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RousseauAPI/tokenize-text.git"
+    },
+    "author": "GitBook <contact@gitbook.com>",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/RousseauAPI/tokenize-text/issues"
+    }
+}
