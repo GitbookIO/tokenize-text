@@ -35,7 +35,7 @@ describe('Tokenizer', function() {
     });
 
     it('tokenize.words()', function() {
-        var tokens = tokenize.characters()('a b c');
+        var tokens = tokenize.words()('a b c');
 
         tokens.should.have.lengthOf(3);
         tokens[0].value.should.equal('a');

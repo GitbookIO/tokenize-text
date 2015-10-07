@@ -114,8 +114,20 @@ var tokens = tokenize.sections()('this is sentence 1. this is sentence 2');
 
 #### tokenize.words()
 
+Split in words:
 
+```js
+var tokens = tokenize.words()('hello, how are you?');
 
+/*
+[
+    { value: 'hello', index: 0, offset: 5 },
+    { value: 'how', index: 7, offset: 3 },
+    { value: 'are', index: 11, offset: 3 },
+    { value: 'you', index: 15, offset: 3 }
+]
+*/
+```
 
 #### tokenize.filter(fn)
 
