@@ -42,6 +42,28 @@ describe('tokenize.splitAndMerge(fn)', function() {
         tokens[1].offset.should.equal(5);
     });
 
+    it('should correctly calcul offset', function() {
+        var tokens = tokenize.flow(
+            tokenize.re(/\S+/),
+            tokenize.splitAndMerge(function(tok) {
+                if (tok == '|') return null;
+                return tok;
+            }, {
+                mergeWith: ''
+            })
+        )('ab cd | ef gh');
+
+        tokens.should.have.lengthOf(2);
+
+        tokens[0].value.should.equal('abcd');
+        tokens[0].index.should.equal(0);
+        tokens[0].offset.should.equal(5);
+
+        tokens[1].value.should.equal('efgh');
+        tokens[1].index.should.equal(8);
+        tokens[1].offset.should.equal(5);
+    });
+
     it('should handle splitting in the middle of tokens', function() {
         var tokens = tokenize.flow(
             tokenize.words(),
