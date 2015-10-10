@@ -14,5 +14,23 @@ describe('tokenize.filter()', function() {
         tokens[0].index.should.equal(11);
         tokens[0].offset.should.equal(4);
     });
+
+    it('should not change valeu of index and offset', function() {
+        var tokens = [
+            { value: 'test', index: 10, offset: 10 },
+            { value: 'test 2', index: 30, offset: 20}
+        ];
+
+        var filter = tokenize.filter(function() {
+            return true;
+        });
+
+        tokens = filter(tokens);
+        tokens.should.have.lengthOf(2);
+        tokens[0].index.should.equal(10);
+        tokens[0].offset.should.equal(10);
+        tokens[1].index.should.equal(30);
+        tokens[1].offset.should.equal(20);
+    })
 });
 
